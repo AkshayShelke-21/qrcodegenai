@@ -40,15 +40,16 @@ const Home: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4 animate-fadeIn">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 flex items-center justify-center p-4 animate-fadeIn">
       <div className="container mx-auto px-4 py-8 max-w-2xl">
-        <div className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-xl p-8 transition-all duration-300 hover:shadow-2xl hover:scale-[1.02] animate-slideUp">
-          <div className="mb-8 text-center">
-            <h1 className="text-5xl font-bold bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent animate-gradient">
+        <div className="bg-white/90 backdrop-blur-md rounded-3xl shadow-2xl p-8 transition-all duration-300 hover:shadow-3xl hover:scale-[1.01] animate-slideUp border border-gray-100">
+          <div className="mb-8 text-center space-y-2">
+            <h1 className="text-6xl font-bold bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent animate-gradient tracking-tight">
               QRGen
             </h1>
-            <p className="text-gray-600 mt-4 text-lg">Transform your text or URL into a QR code instantly</p>
+            <p className="text-gray-600 text-lg font-medium">Transform your text or URL into a QR code instantly!</p>
           </div>
+
           <div className="space-y-8">
             <div className="space-y-2">
               <input
@@ -56,8 +57,8 @@ const Home: React.FC = () => {
                 id="text"
                 value={text}
                 onChange={handleInputChange}
-                placeholder="Type something..."
-                className="w-full px-4 py-3 rounded-xl border border-gray-300 bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 hover:border-blue-400 shadow-sm"
+                placeholder="Enter text or URL to generate QR code..."
+                className="w-full px-6 py-4 rounded-2xl border-2 border-gray-200 bg-white/50 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 hover:border-blue-300 shadow-sm text-lg"
               />
             </div>
           
@@ -66,11 +67,11 @@ const Home: React.FC = () => {
                 <div className="animate-spin rounded-full h-12 w-12 border-4 border-blue-500 border-t-transparent"></div>
               </div>
             ) : qrCode && (
-              <div className="flex flex-col items-center space-y-6 p-8 bg-gray-50 rounded-xl border border-gray-200 transition-all duration-300">
+              <div className="flex flex-col items-center space-y-6 p-8 bg-gray-50/80 rounded-2xl border border-gray-200 transition-all duration-300 backdrop-blur-sm">
                 <img
                   src={qrCode}
                   alt="Generated QR Code"
-                  className="max-w-[300px] w-full h-auto rounded-lg shadow-md transition-transform duration-300 hover:scale-105"
+                  className="max-w-[300px] w-full h-auto rounded-xl shadow-lg transition-transform duration-300 hover:scale-105 border-4 border-white"
                 />
                 <div className="flex space-x-4">
                   <a
@@ -101,8 +102,8 @@ const Home: React.FC = () => {
 
       {/* Share Modal */}
       {isShareModalOpen && (
-        <div className="fixed inset-0 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4 z-50 animate-fadeIn">
-          <div className="bg-white rounded-3xl p-8 w-full max-w-md transform transition-all duration-300 scale-100 animate-slideUp shadow-2xl">
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-md flex items-center justify-center p-4 z-50 animate-fadeIn">
+          <div className="bg-white/95 rounded-3xl p-8 w-full max-w-md transform transition-all duration-300 scale-100 animate-slideUp shadow-2xl border border-gray-100">
             <div className="flex justify-between items-center mb-6">
               <h3 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">Share QR Code</h3>
               <button
@@ -115,19 +116,6 @@ const Home: React.FC = () => {
               </button>
             </div>
             <div className="space-y-4">
-              <button
-                onClick={() => {
-                  navigator.clipboard.writeText(text);
-                  alert('Text copied to clipboard!');
-                }}
-                className="w-full flex items-center justify-center space-x-2 px-4 py-3 bg-gray-100 hover:bg-gray-200 rounded-xl transition-colors duration-200"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                  <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z" />
-                  <path d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z" />
-                </svg>
-                <span>Copy to Clipboard</span>
-              </button>
               <button
                 onClick={() => {
                   const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(window.location.href)}`;
