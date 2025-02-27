@@ -40,12 +40,14 @@ const Home: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4 animate-fadeIn">
       <div className="container mx-auto px-4 py-8 max-w-2xl">
-        <div className="bg-white rounded-3xl shadow-xl p-8 transition-all duration-300 hover:shadow-2xl">
+        <div className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-xl p-8 transition-all duration-300 hover:shadow-2xl hover:scale-[1.02] animate-slideUp">
           <div className="mb-8 text-center">
-            <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">QR Code Generator</h1>
-            <p className="text-gray-600 mt-2">Enter any text or URL to generate a QR code</p>
+            <h1 className="text-5xl font-bold bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent animate-gradient">
+              QRGen
+            </h1>
+            <p className="text-gray-600 mt-4 text-lg">Transform your text or URL into a QR code instantly</p>
           </div>
           <div className="space-y-8">
             <div className="space-y-2">
@@ -99,13 +101,13 @@ const Home: React.FC = () => {
 
       {/* Share Modal */}
       {isShareModalOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-          <div className="bg-white rounded-2xl p-6 w-full max-w-md transform transition-all">
-            <div className="flex justify-between items-center mb-4">
-              <h3 className="text-xl font-semibold text-gray-900">Share QR Code</h3>
+        <div className="fixed inset-0 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4 z-50 animate-fadeIn">
+          <div className="bg-white rounded-3xl p-8 w-full max-w-md transform transition-all duration-300 scale-100 animate-slideUp shadow-2xl">
+            <div className="flex justify-between items-center mb-6">
+              <h3 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">Share QR Code</h3>
               <button
                 onClick={() => setIsShareModalOpen(false)}
-                className="text-gray-500 hover:text-gray-700 transition-colors"
+                className="text-gray-400 hover:text-gray-600 transition-colors duration-200 rounded-full p-2 hover:bg-gray-100"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
